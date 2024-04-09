@@ -1,0 +1,11 @@
+_minted-*/
+media/
+*.aux
+*.log
+*.nav
+*.out
+*.pytxcode
+*.snm
+*.toc
+*.vrb
+Makefile
