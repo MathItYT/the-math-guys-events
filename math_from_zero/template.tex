@@ -1,0 +1,270 @@
+\documentclass[dvisvgm,hypertex,aspectratio=169]{beamer}
+\usetheme{tmg}
+
+\title{Matemáticas desde cero -- Clase 1}
+\subtitle{Desde otra perspectiva: Lógica}
+\author{MathLike}
+\date{Abril de 2024}
+
+\newenvironment{changemargin}{%
+  \vspace*{-0.5cm}
+  \begin{list}{}{%
+    \setlength{\leftmargin}{-1cm}%
+    \setlength{\rightmargin}{0pt}%
+  }%
+  \item[]}{\end{list}}
+% Los roles son los siguientes:
+% - Administrador (Solo MathLike puede tener este rol)
+% - Miembro
+% - Moderador (Solo moderadores del server pueden tener este rol)
+% - Ayudante de [asignatura] (Solo ayudantes de esa asignatura pueden tener este rol)
+% - Creador de contenido (Solo creadores de contenido pueden tener este rol)
+\institute{Administrador de The Math Guys}
+\titlegraphic{\includegraphics[height=0.25\paperheight]{TheMathGuysLogo.png}}
+\discord{The math guys}
+% Si no tiene YouTube o GitHub, simplemente borre el comando correspondiente
+\youtube{mathlike}
+\github{MathItYT}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+\begin{frame}{Motivación}
+  Desde la escuela siempre nos han enseñado que contar y sumar es lo más básico
+  de las matemáticas, pero, ¿hay algo más básico que decir $\VAR{a}+\VAR{b}=\VAR{result}$
+  o que en \VAR{apples} hay \VAR{apple_count} manzanas?
+\end{frame}
+\begin{frame}{¿Qué necesitamos antes?}
+  Las matemáticas son exactas y consistentes, es decir, no hay lugar para la
+  ambigüedad o la contradicción. \pause{}Para evitar las dos cosas, necesitamos darle
+  estructura a nuestros razonamientos. De esto se encarga la \alert{lógica}.
+\end{frame}
+\begin{frame}{¿Es válido este argumento?}
+  \begin{block}{Argumento}
+    \pause
+    \[
+    \begin{array}{ c c }
+      &\text{Todas las personas son mortales} \pause\\
+      &\text{Sócrates es una persona} \pause\\
+      \cline{2-2}
+      \therefore &\text{Sócrates es mortal}
+    \end{array}
+    \]
+  \end{block}
+\end{frame}
+\begin{frame}{¿Qué es la lógica?}
+  Intuitivamente, para nosotros sí es válido el argumento anterior. Sócrates es una persona, y toda persona es mortal, o sea que Sócrates debe ser mortal.
+
+  \pause Pero, ¿cómo podemos formalizar esto? De esto se encarga la lógica.
+\end{frame}
+\begin{frame}{Proposición}
+  Una proposición es una afirmación que puede ser verdadera o falsa, pero no ambas a la vez ni ninguna.
+
+  \begin{block}{Ejemplos}
+    \begin{itemize}
+      \item $2+2=4$ es proposición, específicamente verdadera.
+      \item $1+5=98$ es proposición, específicamente falsa.
+      \item $x+3=5$ no es proposición, ya que depende del valor de $x$.
+      \item "¿Qué hora es?" no es proposición, ya que no se puede determinar el valor de verdad de una pregunta.
+      \item "¡Hola!" no es proposición, ya que no es ni verdadera ni falsa.
+      \item "Haz la tarea" no es proposición, ya que no es ni verdadera ni falsa.
+    \end{itemize}
+  \end{block}
+\end{frame}
+\begin{frame}{Formalizando proposiciones}
+  \begin{block}{Definición}
+    Un lenguaje $\mathcal{L}(P, S_1, S_2)$ sobre un conjunto de proposiciones simples $P$ es un conjunto de expresiones que nos permiten construir proposiciones a partir de las proposiciones en $P$
+    usando los conectivos lógicos unarios en $S_1$ y binarios en $S_2$. Es decir, $\mathcal{L}(P, S_1, S_2)$ es la clase más pequeña que cumple:
+
+    \pause
+    $$p\in P\implies p\in\mathcal{L}(P, S_1, S_2)$$
+    \begin{align*}
+      &(p,q\in\mathcal{L}(P, S_1, S_2))\land(*_1\in S_1)\land(*_2\in S_2) \\
+      \implies&(*_1(p)\in\mathcal{L}(P, S_1, S_2))\land((p*_2q)\in\mathcal{L}(P, S_1, S_2))
+    \end{align*}
+  \end{block}
+  \pause
+  En el primer caso, $p$ es una proposición simple como $2+2=5$ (falsa) o Santiago es la capital de Chile (verdadera).
+\end{frame}
+\begin{frame}{Formalizando proposiciones}
+  En el segundo caso, $p$ es una proposición arbitraria en el lenguaje como $2+2=4$ (verdadera) o Santiago es la capital de Chile y $1+1=3$ (falsa).
+
+  \pause
+  Los paréntesis sirven para agrupar y evitar ambigüedades.
+\end{frame}
+\begin{frame}{Ejercicio}
+  Sean $p, q, r\in P$, $\neg\in S_1$ y $\land,\lor,\iff\in S_2$. Demuestre que $(\neg p\land(q\lor r))\iff((p\land q)\lor(p\land r))\in\mathcal{L}(P, S_1, S_2)$. (Nótese que la expresión no está rodeada en paréntesis, porque no es ambiguo, pero sigue siendo válido).
+
+  \pause
+  \textbf{Demostración:} Por definición, $p, q, r\in\mathcal{L}(P, S_1, S_2)$. Por lo tanto, $\neg p\in\mathcal{L}(P, S_1, S_2)$ y $q\lor r\in\mathcal{L}(P, S_1, S_2)$. Luego, $\neg p\in\mathcal{L}(P, S_1, S_2)$ y $q\lor r\in\mathcal{L}(P, S_1, S_2)$, por lo que $(\neg p\land(q\lor r))\in\mathcal{L}(P, S_1, S_2)$.
+
+  \pause De manera similar, $p\land q\in\mathcal{L}(P, S_1, S_2)$ y $p\land r\in\mathcal{L}(P, S_1, S_2)$, por lo que $(p\land q)\lor(p\land r)\in\mathcal{L}(P, S_1, S_2)$.
+  
+  \pause Finalmente, $(\neg p\land(q\lor r))\iff((p\land q)\lor(p\land r))\in\mathcal{L}(P, S_1, S_2)$. $\blacksquare$
+\end{frame}
+\begin{frame}{Valuación}
+  \begin{block}{Definición}
+    Una valuación $\sigma:\mathcal{L}(P, S_1, S_2)\to\{0,1\}$ es una función que asigna a cada proposición compuesta un valor de verdad, dependiendo de los valores de verdad de las proposiciones simples.
+  \end{block}
+\end{frame}
+\begin{frame}{Definición de operadores}
+  \pause
+  \begin{block}{Definición}
+    $\land$ es un operador que satisface $\sigma(p\land q)=1$ si y solo si $\sigma(p)=1$ y $\sigma(q)=1$.
+  \end{block}
+  \pause
+  \begin{block}{Definición}
+    $\lor$ es un operador que satisface $\sigma(p\lor q)=1$ si y solo si $\sigma(p)=1$ o $\sigma(q)=1$.
+  \end{block}
+  \pause
+  \begin{block}{Definición}
+    $\neg$ es un operador que satisface $\sigma(\neg p)=1$ si y solo si $\sigma(p)=0$.
+  \end{block}
+  \pause
+  \begin{block}{Definición}
+    $\iff$ es un operador que satisface $\sigma(p\iff q)=1$ si y solo si $\sigma(p)=\sigma(q)$.
+  \end{block} 
+  \pause
+  \begin{block}{Definición}
+    $\implies$ es un operador que satisface $\sigma(p\implies q)=\sigma(\neg p\lor q)$.
+  \end{block}
+\end{frame}
+\begin{frame}{Tablas de verdad}
+  \begin{block}{Definición}
+    Una tabla de verdad es una tabla que muestra los valores de verdad de una proposición compuesta para todas las posibles combinaciones de valores de verdad de las proposiciones simples.
+
+    \pause
+    Por ejemplo, la tabla de verdad de $p\land q$ es:
+    \begin{center}
+      \begin{tabular}{ |c|c|c|c| }
+        \hline
+        $\sigma$ & $p$ & $q$ & $p\land q$ \\
+        \hline
+        $\sigma_1$ & 1 & 1 & 1 \\
+        $\sigma_2$ & 1 & 0 & 0 \\
+        $\sigma_3$ & 0 & 1 & 0 \\
+        $\sigma_4$ & 0 & 0 & 0 \\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{block}
+\end{frame}
+\begin{frame}{Ejercicio}
+  \begin{block}{Ejercicio}
+    Encuentre la tabla de verdad de $p\lor q$.
+
+    \pause
+    \begin{center}
+      \begin{tabular}{ |c|c|c|c| }
+        \hline
+        $\sigma$ & $p$ & $q$ & $p\lor q$ \\
+        \hline
+        $\sigma_1$ & 1 & 1 & 1 \\
+        $\sigma_2$ & 1 & 0 & 1 \\
+        $\sigma_3$ & 0 & 1 & 1 \\
+        $\sigma_4$ & 0 & 0 & 0 \\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{block}
+\end{frame}
+\begin{frame}{Ejercicio}
+  \begin{block}{Ejercicio}
+    Encuentre la tabla de verdad de $\neg p$.
+
+    \pause
+    \begin{center}
+      \begin{tabular}{ |c|c|c| }
+        \hline
+        $\sigma$ & $p$ & $\neg p$ \\
+        \hline
+        $\sigma_1$ & 1 & 0 \\
+        $\sigma_2$ & 0 & 1 \\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{block}
+\end{frame}
+\begin{frame}{Ejercicio}
+  \begin{block}{Ejercicio}
+    Encuentre la tabla de verdad de $p\implies q$.
+
+    \pause
+    \begin{center}
+      \begin{tabular}{ |c|c|c|c| }
+        \hline
+        $\sigma$ & $p$ & $q$ & $p\implies q$ \\
+        \hline
+        $\sigma_1$ & 1 & 1 & 1 \\
+        $\sigma_2$ & 1 & 0 & 0 \\
+        $\sigma_3$ & 0 & 1 & 1 \\
+        $\sigma_4$ & 0 & 0 & 1 \\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{block}
+\end{frame}
+\begin{frame}{Ejercicio}
+  \begin{block}{Ejercicio}
+    Encuentre la tabla de verdad de $p\iff q$.
+
+    \pause
+    \begin{center}
+      \begin{tabular}{ |c|c|c|c| }
+        \hline
+        $\sigma$ & $p$ & $q$ & $p\iff q$ \\
+        \hline
+        $\sigma_1$ & 1 & 1 & 1 \\
+        $\sigma_2$ & 1 & 0 & 0 \\
+        $\sigma_3$ & 0 & 1 & 0 \\
+        $\sigma_4$ & 0 & 0 & 1 \\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{block}
+\end{frame}
+\begin{frame}{Ejercicio}
+  \begin{block}{Ejercicio}
+    Encuentre la tabla de verdad de $p\land(q\lor r)$.
+
+    \pause
+    \begin{center}
+      \begin{tabular}{ |c|c|c|c|c|c| }
+        \hline
+        $\sigma$ & $p$ & $q$ & $r$ & $q\lor r$ & $p\land(q\lor r)$ \\
+        \hline
+        $\sigma_1$ & 1 & 1 & 1 & 1 & 1 \\
+        $\sigma_2$ & 1 & 1 & 0 & 1 & 1 \\
+        $\sigma_3$ & 1 & 0 & 1 & 1 & 1 \\
+        $\sigma_4$ & 1 & 0 & 0 & 0 & 0 \\
+        $\sigma_5$ & 0 & 1 & 1 & 1 & 0 \\
+        $\sigma_6$ & 0 & 1 & 0 & 1 & 0 \\
+        $\sigma_7$ & 0 & 0 & 1 & 1 & 0 \\
+        $\sigma_8$ & 0 & 0 & 0 & 0 & 0 \\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{block}
+\end{frame}
+\begin{frame}{¿Qué más sigue?}
+  \begin{block}{Próxima clase}
+    \begin{itemize}
+      \item Introducción a la teoría de conjuntos.
+      \item Operaciones con conjuntos.
+      \item Propiedades de las operaciones con conjuntos.
+    \end{itemize}
+  \end{block}
+\end{frame}
+\begin{frame}
+  \begin{changemargin}
+    \includemedia[
+      width=1\paperwidth,
+      height=1\paperheight,
+      autoplay,
+      muted,
+      loop
+    ]{}{ThanksForWatching.mp4}
+  \end{changemargin}
+\end{frame}
+\end{document}

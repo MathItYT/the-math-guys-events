@@ -1,5 +1,8 @@
+the_math_guys_bot/
+__pycache__/
 _minted-*/
 media/
+pythontex-files*/
 *.aux
 *.log
 *.nav
@@ -8,4 +11,11 @@ media/
 *.snm
 *.toc
 *.vrb
+*.tmp
+*.xref
+*.dvi
+*.pbsdat
+*.4tc
+*-[0-9][0-9].svg
 Makefile
+.env

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math from Zero</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        object {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        &:focus {
+            outline: none;
+        }
+    </style>
+    <script>
+        alert('Presiona F11 para ver en pantalla completa. Usa las flechas izquierda y derecha para navegar.')
+    </script>
+</head>
+<body>
+    <div id="container" tabindex="0">
+        {% for svg in svgs %}
+            <object data="{{ svg }}"></object>
+        {% endfor %}
+    </div>
+</body>
+<script>
+    const objects = document.querySelectorAll('object');
+    let current = 0;
+    const setData = (index) => {
+        for (let i = 0; i < objects.length; i++) {
+            objects[i].style.display = i === index ? 'block' : 'none';
+        }
+    };
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' && current < objects.length - 1) {
+            current++;
+        } else if (e.key === 'ArrowLeft' && current > 0) {
+            current--;
+        }
+        setData(current);
+    });
+    setData(current);
+    window.focus()
+</script>
+</html>
