@@ -1,0 +1,163 @@
+\mode<presentation>
+
+\RequirePackage[spanish]{babel}
+% \RequirePackage{emoji}
+\RequirePackage{scalerel}
+\RequirePackage{media4svg}
+\RequirePackage{graphicx}
+\RequirePackage{ragged2e}
+\RequirePackage{minted}
+\usemintedstyle{github-dark}
+\RequirePackage{fontawesome5}
+\RequirePackage{etoolbox}
+\RequirePackage{twemojis}
+\RequirePackage{booktabs}
+\setbeamertemplate{bibliography item}{\faBook}
+
+\setbeamercolor{bibliography item}{fg=AlmostWhite}
+\setbeamercolor*{bibliography entry title}{fg=AlmostWhite}
+\setbeamercolor*{bibliography entry author}{fg=AlmostWhite}
+\setbeamercolor*{bibliography entry location}{fg=AlmostWhite}
+\setbeamercolor*{bibliography entry note}{fg=AlmostWhite}
+
+\renewcommand{\figurename}{\alert{Figura}}
+
+\useinnertheme{tcolorbox}
+
+\setbeamertemplate{navigation symbols}{}
+\definecolor{DiscordBurple}{HTML}{5865F2}
+\definecolor{TheMathGuysGrey}{HTML}{333333}
+\definecolor{AlmostWhite}{HTML}{EFEFEF}
+
+\setbeamercolor{title}{fg=DiscordBurple}
+\setbeamercolor*{frametitle}{bg=AlmostWhite,fg=TheMathGuysGrey}
+\setbeamercolor*{background canvas}{bg=TheMathGuysGrey}
+\setbeamercolor*{normal text}{fg=AlmostWhite}
+\setbeamercolor*{inverted text}{fg=TheMathGuysGrey}
+\setbeamercolor*{alerted text}{fg=DiscordBurple}
+\setbeamercolor{block title}{fg=DiscordBurple, bg=TheMathGuysGrey}
+\setbeamercolor{block title alerted}{fg=DiscordBurple, bg=TheMathGuysGrey}
+\setbeamercolor{block title example}{fg=DiscordBurple, bg=TheMathGuysGrey}
+\setbeamercolor{block body}{bg=TheMathGuysGrey}
+\setbeamercolor{block body alerted}{bg=TheMathGuysGrey}
+\setbeamercolor{block body example}{bg=TheMathGuysGrey}
+\setbeamercolor{enumerate item}{fg=AlmostWhite}
+\setbeamercolor{enumerate subitem}{fg=AlmostWhite}
+\setbeamercolor{enumerate subsubitem}{fg=AlmostWhite}
+\setbeamercolor{itemize item}{fg=AlmostWhite}
+\setbeamercolor{itemize subitem}{fg=AlmostWhite}
+\setbeamercolor{itemize subsubitem}{fg=AlmostWhite}
+\setbeamercolor{section number projected}{fg=AlmostWhite}
+\setbeamercolor{section in toc}{fg=AlmostWhite}
+
+\setbeamertemplate{itemize item}{$\bullet$}
+\setbeamertemplate{itemize subitem}{$\circ$}
+\setbeamertemplate{itemize subsubitem}{-}
+\setbeamertemplate{enumerate subitem}{\alph{enumii}.}
+\setbeamertemplate{enumerate subsubitem}{\roman{enumiii}.}
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+\setbeamertemplate{subsubsection in toc}[subsubsections numbered]
+
+\renewcommand{\qedsymbol}{$\color{base1}{\blacksquare}$}
+
+\setlength{\parskip}{.5\baselineskip}
+
+\providecommand*{\beamer@alertedtext@only}{%
+  \relax
+  \ifmmode
+    \expandafter\beamer@alertedtext@warning
+  \else
+    \bfseries\itshape
+  \fi
+}
+\providecommand*{\beamer@alertedtext@warning}{%
+  \ClassWarning{beamer}
+  {Cannot use bold/italic for alerted text in math mode}%
+}
+
+
+\setbeamerfont*{frametitle}{series=\bfseries, size=\Large}
+\setbeamerfont*{framesubtitle}{series=\itshape\small}
+\setbeamerfont*{title}{series=\bfseries, size=\Large}
+\setbeamerfont*{subtitle}{series=\bfseries\itshape}
+\setbeamerfont*{date}{series=\itshape}
+\setbeamerfont*{alerted text}{series=\beamer@alertedtext@only}
+\setbeamerfont*{block title}{series=\itshape\normalsize}
+\addtobeamertemplate{theorem begin}{\normalfont}{}
+
+\tcbsetforeverylayer{
+  fonttitle=\bfseries\itshape,
+  colback=AlmostWhite,
+  colbacktitle=AlmostWhite,
+  size=tight,
+  top=2mm,
+  bottom=.5mm,
+  enhanced,
+  frame hidden,
+  borderline west = {2pt}{-2mm}{tcbcoltitle}
+}
+
+\NewDocumentCommand\email{ o m }{\newcommand\insertemail{\href{mailto:\IfValueTF{#1}{#1}{#2}}{\mbox{{\scriptsize\faEnvelope}\hspace{.5em}\scriptsize #2}}}}
+\NewDocumentCommand\site{ o m }{\newcommand\insertsite{\href{\IfValueTF{#1}{#1}{#2}}{\mbox{{\scriptsize\faHome}\hspace{.5em}\scriptsize #2}}}}
+\NewDocumentCommand\mathscinet{ m }{\newcommand\insertmathscinet{\href{#1}{\mbox{{\scriptsize\faUniversity}\hspace{.5em}\scriptsize MathSciNet}}}}
+\NewDocumentCommand\arxiv{ s m }{
+  \newcommand\insertarxiv{\href{\IfBooleanTF{#1}{https://arxiv.org/a/#2.html}{#2}}{\mbox{\scriptsize\aiarXiv}\hspace{.5em}\scriptsize \IfBooleanTF{#1}{#2}{arXiv}}}
+}
+\NewDocumentCommand\zotero{ m }{\newcommand\insertzotero{\href{#1}{\mbox{{\scriptsize\aiZoteroSquare}\hspace{.5em}\scriptsize Zotero}}}}
+\NewDocumentCommand\googlescholar{ m }{\newcommand\insertgooglescholar{\href{#1}{\mbox{{\scriptsize\aiGoogleScholar}\hspace{.5em}\scriptsize Google Scholar}}}}
+\NewDocumentCommand\orcid{ m }{\newcommand\insertorcid{\href{#1}{\mbox{{\scriptsize\aiOrcid}}\hspace{.5em}\scriptsize ORCID}}}
+\NewDocumentCommand\scopus{ m }{\newcommand\insertscopus{\href{#1}{\mbox{{\scriptsize\aiScopusSquare}\hspace{.5em}\scriptsize Scopus}}}}
+\NewDocumentCommand\facebook{ m }{\newcommand\insertfacebook{\href{#1}{\mbox{{\scriptsize\faFacebook}\hspace{.5em}\scriptsize Facebook}}}}
+\NewDocumentCommand\linkedin{ m }{\newcommand\insertlinkedin{\href{#1}{\mbox{{\scriptsize\faLinkedin}\hspace{.5em}\scriptsize Linkedin}}}}
+\NewDocumentCommand\discord{ m }{\newcommand\insertdiscord{\href{https://discord.gg/MGdXRPVbA4}{\mbox{{\scriptsize\faDiscord}\hspace{.5em}\scriptsize #1}}}}
+\NewDocumentCommand\gitlab{ m }{\newcommand\insertgitlab{\href{https://gitlab.com/#1}{\mbox{{\scriptsize\faGitlab}\hspace{.5em}\scriptsize #1}}}}
+\NewDocumentCommand\twitter{ m }{\newcommand\inserttwitter{\href{https://x.com/#1}{\mbox{{\scriptsize\faTwitter}\hspace{.5em}\scriptsize @#1}}}}
+\NewDocumentCommand\instagram{ m }{\newcommand\insertinstagram{\href{https://www.instagram.com/#1}{\mbox{{\scriptsize\faInstagram}\hspace{.5em}\scriptsize #1}}}}
+\NewDocumentCommand\youtube{ m }{\newcommand\insertyoutube{\href{https://youtube.com/@#1}{\mbox{{\scriptsize\faYoutube}\hspace{.5em}\scriptsize #1}}}}
+\NewDocumentCommand\github{ m }{\newcommand\insertgithub{\href{https://github.com/#1}{\mbox{{\scriptsize\faGithub}\hspace{.5em}\scriptsize #1}}}}
+
+\defbeamertemplate*{title page}{}{
+  \vfill
+  {\inserttitlegraphic}\par\bigskip
+  {\usebeamerfont{title}{\usebeamercolor[fg]{title}{\inserttitle}}}\par
+  {\usebeamerfont{subtitle}\insertsubtitle}\par
+  {\usebeamerfont{date}\insertdate}\par
+  {\usebeamerfont{author}\insertauthor}\newline
+  {\usebeamerfont{institute}\insertinstitute}\par
+  {\@ifundefined{insertemail}{}{\insertemail\quad}
+    \@ifundefined{insertsite}{}{\insertsite\quad}
+    \@ifundefined{insertmathscinet}{}{\insertmathscinet\quad}
+    \@ifundefined{insertarxiv}{}{\insertarxiv\quad}
+    \@ifundefined{insertzotero}{}{\insertzotero\quad}
+    \@ifundefined{insertgooglescholar}{}{\insertgooglescholar\quad}
+    \@ifundefined{insertorcid}{}{\insertorcid\quad}
+    \@ifundefined{insertscopus}{}{\insertscopus\quad}
+    \@ifundefined{insertgitlab}{}{\insertgitlab\quad}
+    \@ifundefined{insertfacebook}{}{\insertfacebook\quad}
+    \@ifundefined{insertlinkedin}{}{\insertlinkedin\quad}
+    \@ifundefined{inserttwitter}{}{\inserttwitter\quad}
+    \@ifundefined{insertinstagram}{}{\insertinstagram\quad}
+    \@ifundefined{insertdiscord}{}{\insertdiscord\quad}
+    \@ifundefined{insertyoutube}{}{\insertyoutube\quad}
+    \@ifundefined{insertgithub}{}{\insertgithub\quad}
+  }}
+
+\renewcommand<>\beamer@framefootnotetext[1]{%
+  \global\setbox\beamer@footins\vbox{%
+    \hsize\framewidth
+    \textwidth\hsize
+    \columnwidth\hsize
+    \unvbox\beamer@footins
+    \reset@font\footnotesize
+    \@parboxrestore
+    \protected@edef\@currentlabel
+    {\noindent\csname p@footnote\endcsname\@thefnmark}%
+    \hskip -1.5em
+    \color@begingroup
+    \uncover#2{\@makefntext{%
+        \rule\z@\footnotesep\ignorespaces\parbox[t]{.99\textwidth}{#1\@finalstrut\strutbox}\vskip1sp}}%
+    \color@endgroup}%
+}
+
+\mode<all>

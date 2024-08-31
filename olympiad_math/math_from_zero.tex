@@ -1,0 +1,330 @@
+\documentclass[dvisvgm,hypertex,aspectratio=169]{beamer}
+\usetheme{tmg}
+
+\title{Lógica Proposicional}
+\subtitle{Teoría y práctica desde cero}
+\author{MathLike}
+\date{\today}
+
+\newenvironment{changemargin}{%
+  \vspace*{-0.5cm}
+  \begin{list}{}{%
+    \setlength{\leftmargin}{-1cm}%
+    \setlength{\rightmargin}{0pt}%
+  }%
+  \item[]}{\end{list}}
+% Los roles son los siguientes:
+% - Administrador (Solo MathLike puede tener este rol)
+% - Miembro
+% - Moderador (Solo moderadores del server pueden tener este rol)
+% - Ayudante de [asignatura] (Solo ayudantes de esa asignatura pueden tener este rol)
+% - Creador de contenido (Solo creadores de contenido pueden tener este rol)
+\institute{Administrador de The Math Guys}
+\titlegraphic{\includegraphics[height=0.25\paperheight]{TheMathGuysLogo.png}}
+\discord{The math guys}
+% Si no tiene YouTube o GitHub, simplemente borre el comando correspondiente
+\youtube{mathlike}
+\github{MathItYT}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+\begin{frame}{Motivación}
+  \begin{itemize}[<+->]
+    \item Tenemos la siguiente afirmación: \textit{Si MathLike roba, entonces MathLike se va a la cárcel}.
+    \item Esto es cierto, pero, ¿lo será su recíproco?
+    \item ¿Qué pasa si MathLike se va a la cárcel? ¿Es cierto que MathLike robó?
+  \end{itemize}
+\end{frame}
+\begin{frame}{Motivación}
+  \begin{itemize}[<+->]
+    \item La verdad no necesariamente, pude haber sido acusado injustamente, haber matado a alguien, vendido cosas ilegales, etc.
+    \item Es un ejemplo sencillo de lógica proposicional, ¡y que fácilmente hemos usado en la vida real!
+    \item Cuando discutes con alguien, quizás no te des cuenta, pero te esfuerzas para que tus argumentos sean válidos.
+    \item La lógica proposicional es la base de la lógica matemática, y es la que nos permite hacer razonamientos válidos.
+    \item Podemos usarla también para modelar situaciones de la vida real, como estructurar las reglas de mi \textit{server} de Discord. \scalerel*{\twemoji{1f5e3}}{X}
+    \item ¡Vamos a aprenderla! \scalerel*{\twemoji{nerd face}}{X}\scalerel*{\twemoji{261d}}{X}
+  \end{itemize}
+\end{frame}
+\begin{frame}{Conceptos básicos}
+  \begin{itemize}[<+->]
+    \item \textbf{Proposición:} Una oración que puede ser verdadera o falsa, pero no ambas. Ejemplos: $2+2=4$, \textit{La Tierra es plana}.
+    \item \textbf{Conectivos lógicos:} Son operaciones que se aplican a proposiciones para formar proposiciones más complejas. Por ejemplo, \textit{y}, \textit{o}, \textit{si... entonces...}, \textit{no es cierto que...}
+    \item \textbf{Tabla de verdad:} Es una tabla que muestra todas las posibles combinaciones de valores de verdad de las proposiciones que la componen. $1$ es verdadero, $0$ es falso.
+
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{|c|c|c|}
+        \hline
+        $p$ & $q$ & $p \land q$ \\ \hline
+        1 & 1 & 1 \\ \hline
+        1 & 0 & 0 \\ \hline
+        0 & 1 & 0 \\ \hline
+        0 & 0 & 0 \\ \hline
+      \end{tabular}
+    \end{table}
+  \end{itemize}
+\end{frame}
+\begin{frame}{Conceptos básicos}
+  \begin{itemize}[<+->]
+    \item \textbf{Proposición simple:} Una proposición que no contiene conectivos lógicos.
+    \item \textbf{Proposición compuesta:} Una proposición que contiene al menos un conectivo lógico.
+    \item \textbf{Conjunto proposicional:} Un conjunto de proposiciones simples. Por ejemplo, $\{p, q, r\}$, donde $p$ puede ser \textit{MathLike es admin}, $q$ puede ser \textit{MathLike es miembro}, y $r$ puede ser \textit{MathLike no es YouTuber} (¡falso!) \scalerel*{\twemoji{1f609}}{X}
+    \item \textbf{Operador lógico:} Un símbolo que representa un conectivo lógico. Por ejemplo, $\land$ representa \textit{y} (binario), $\lor$ representa \textit{o} (binario), $\neg$ representa \textit{no} (unario).
+    \item \textbf{Lenguaje formal:} Un lenguaje que se usa para expresar proposiciones y razonamientos de manera precisa y sin ambigüedades. Se usa un conjunto proposicional y otro de operadores lógicos.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Sintaxis}
+  Es el estudio de la escritura de las proposiciones. En un lenguaje formal, se usan los siguientes símbolos:
+  \begin{itemize}[<+->]
+    \item \textbf{Variables proposicionales:} $p, q, r$. Representan proposiciones simples.
+    \item \textbf{Operadores lógicos:} $\land, \lor, \neg, \implies, \iff$
+    \item \textbf{Paréntesis:} $(, )$. Se usan para agrupar proposiciones compuestas.
+  \end{itemize}
+  \pause
+  \begin{block}{Definición}
+    Una fórmula bien formada (FWF) es una secuencia finita de símbolos de un lenguaje formal que cumple con las reglas de formación de dicho lenguaje.
+  \end{block}
+\end{frame}
+\begin{frame}{Sintaxis -- Reglas de formación}
+  \begin{itemize}[<+->]
+    \begin{enumerate}
+      \item Toda variable proposicional es una FWF.
+      \item Si $\alpha$ es una FWF, entonces $\neg \alpha$ también lo es.
+      \item Si $\alpha$ y $\beta$ son FWF, entonces $(\alpha \land \beta)$, $(\alpha \lor \beta)$, $(\alpha \implies \beta)$ y $(\alpha \iff \beta)$ también lo son.
+      \item Es el conjunto más pequeño que cumple con las reglas anteriores.
+    \end{enumerate}
+    \item \textbf{Notación:} Se usan paréntesis para evitar ambigüedades. Por ejemplo, $p \land q \lor r$ puede ser $(p \land q) \lor r$ o $p \land (q \lor r)$.
+    \item \textbf{Precedencia:} $\neg$ tiene mayor precedencia que $\land$, $\land$ tiene mayor precedencia que $\lor$, y $\lor$ tiene mayor precedencia que $\implies$ y $\iff$.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Sintaxis -- Ejemplos}
+  \begin{itemize}[<+->]
+    \item $(p \land q) \lor r$ es una FWF.
+    \item $\neg p \land q$ es una FWF.
+    \item $p \land \neg q$ es una FWF.
+    \item $p \land q \implies r$ es una FWF.
+    \item $p \land (q \lor r)$ es una FWF.
+    \item $p \land q \lor r \land s$ no es una FWF.
+    \item $p \land \neg q \land r$ no es una FWF.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Semántica}
+  Es el estudio del significado de las proposiciones. En la lógica proposicional, se usan las tablas de verdad para determinar el valor de verdad de una proposición compuesta.
+  \begin{itemize}[<+->]
+    \item \textbf{Interpretación:} Asignación de valores de verdad a las variables proposicionales.
+    \item \textbf{Valor de verdad:} Valor que toma una proposición compuesta dada una interpretación.
+    \item \textbf{Modelo:} Interpretación que hace que una proposición compuesta sea verdadera.
+    \item \textbf{Satisfacibilidad:} Propiedad de una proposición compuesta que puede ser verdadera dada una interpretación.
+    \item \textbf{Tautología:} Proposición compuesta que es verdadera para todas las interpretaciones.
+    \item \textbf{Contradicción:} Proposición compuesta que es falsa para todas las interpretaciones.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Semántica -- Tablas de verdad}
+  \begin{itemize}[<+->]
+    \item \textbf{Ejemplo:} Dada la proposición $p \land q$, su tabla de verdad es:
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{|c|c|c|}
+        \hline
+        $p$ & $q$ & $p \land q$ \\ \hline
+        1 & 1 & 1 \\ \hline
+        1 & 0 & 0 \\ \hline
+        0 & 1 & 0 \\ \hline
+        0 & 0 & 0 \\ \hline
+      \end{tabular}
+    \end{table}
+    \item \textbf{Ejemplo:} Dada la proposición $p \lor q$, su tabla de verdad es:
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{|c|c|c|}
+        \hline
+        $p$ & $q$ & $p \lor q$ \\ \hline
+        1 & 1 & 1 \\ \hline
+        1 & 0 & 1 \\ \hline
+        0 & 1 & 1 \\ \hline
+        0 & 0 & 0 \\ \hline
+      \end{tabular}
+    \end{table}
+  \end{itemize}
+\end{frame}
+\begin{frame}{Semántica -- Ejemplos de tablas de verdad}
+  \begin{itemize}[<+->]
+    \item Dada la proposición $p \land q \lor r$, su tabla de verdad es:
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $r$ & $q \lor r$ & $p \land (q \lor r)$ \\ \hline
+        1 & 1 & 1 & 1 & 1 \\ \hline
+        1 & 1 & 0 & 1 & 1 \\ \hline
+        1 & 0 & 1 & 1 & 1 \\ \hline
+        1 & 0 & 0 & 0 & 0 \\ \hline
+        0 & 1 & 1 & 1 & 0 \\ \hline
+        0 & 1 & 0 & 1 & 0 \\ \hline
+        0 & 0 & 1 & 1 & 0 \\ \hline
+        0 & 0 & 0 & 0 & 0 \\ \hline
+      \end{tabular}
+    \end{table}
+    \item Dada la proposición $p \land \neg q$, su tabla de verdad es:
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{|c|c|c|}
+        \hline
+        $p$ & $q$ & $p \land \neg q$ \\ \hline
+        1 & 1 & 0 \\ \hline
+        1 & 0 & 1 \\ \hline
+        0 & 1 & 0 \\ \hline
+        0 & 0 & 0 \\ \hline
+      \end{tabular}
+    \end{table}
+  \end{itemize}
+\end{frame}
+\begin{frame}{Semántica -- Tablas de verdad notables}
+  \begin{itemize}[<+->]
+    \item \textbf{Negación:} Dada la proposición $\neg p$, su tabla de verdad es:
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{|c|c|}
+        \hline
+        $p$ & $\neg p$ \\ \hline
+        1 & 0 \\ \hline
+        0 & 1 \\ \hline
+      \end{tabular}
+    \end{table}
+    \item \textbf{Conjunción:} Dada la proposición $p \land q$, su tabla de verdad es:
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{|c|c|c|}
+        \hline
+        $p$ & $q$ & $p \land q$ \\ \hline
+        1 & 1 & 1 \\ \hline
+        1 & 0 & 0 \\ \hline
+        0 & 1 & 0 \\ \hline
+        0 & 0 & 0 \\ \hline
+      \end{tabular}
+    \end{table}
+  \end{itemize}
+\end{frame}
+\begin{frame}{Semántica -- Tablas de verdad notables}
+  \begin{itemize}[<+->]
+    \item \textbf{Disyunción:} Dada la proposición $p \lor q$, su tabla de verdad es:
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{|c|c|c|}
+        \hline
+        $p$ & $q$ & $p \lor q$ \\ \hline
+        1 & 1 & 1 \\ \hline
+        1 & 0 & 1 \\ \hline
+        0 & 1 & 1 \\ \hline
+        0 & 0 & 0 \\ \hline
+      \end{tabular}
+    \end{table}
+    \item \textbf{Implicación:} Dada la proposición $p \implies q$, su tabla de verdad es:
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{|c|c|c|}
+        \hline
+        $p$ & $q$ & $p \implies q$ \\ \hline
+        1 & 1 & 1 \\ \hline
+        1 & 0 & 0 \\ \hline
+        0 & 1 & 1 \\ \hline
+        0 & 0 & 1 \\ \hline
+      \end{tabular}
+    \end{table}
+  \end{itemize}
+\end{frame}
+\begin{frame}{Semántica -- Tablas de verdad notables}
+  \begin{itemize}[<+->]
+    \item \textbf{Doble implicación:} Dada la proposición $p \iff q$, su tabla de verdad es:
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{|c|c|c|}
+        \hline
+        $p$ & $q$ & $p \iff q$ \\ \hline
+        1 & 1 & 1 \\ \hline
+        1 & 0 & 0 \\ \hline
+        0 & 1 & 0 \\ \hline
+        0 & 0 & 1 \\ \hline
+      \end{tabular}
+    \end{table}
+  \end{itemize}
+\end{frame}
+\begin{frame}{Semántica -- Combinatoria}
+  \begin{itemize}[<+->]
+    \item ¿Cuántas proposiciones compuestas se pueden formar con $n$ variables proposicionales?
+    \item Sabemos que hay $2^n$ interpretaciones para $n$ variables proposicionales.
+    \item Cada interpretación puede ser verdadera o falsa, por lo que hay $2^{2^n}$ proposiciones compuestas posibles.
+    \item Por ejemplo, con $n = 2$, hay $2^{2^2} = 2^4 = 16$ proposiciones compuestas posibles.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Equivalencia lógica}
+  \begin{itemize}[<+->]
+    \item \textbf{Definición:} Dadas dos proposiciones $p$ y $q$, se dice que son lógicamente equivalentes si tienen la misma tabla de verdad.
+    \item \textbf{Notación:} $p \equiv q$.
+    \item \textbf{Propiedades:}
+    \begin{enumerate}
+      \item \textbf{Reflexiva:} $p \equiv p$.
+      \item \textbf{Simétrica:} Si $p \equiv q$, entonces $q \equiv p$.
+      \item \textbf{Transitiva:} Si $p \equiv q$ y $q \equiv r$, entonces $p \equiv r$.
+      \item \textbf{Teorema de la tautología:} $p \equiv q$ si y solo si $(p \iff q)$ es una tautología.
+    \end{enumerate}
+  \end{itemize}
+\end{frame}
+\begin{frame}{Equivalencia lógica -- Ejemplos}
+  \begin{itemize}[<+->]
+    \item Dadas las proposiciones $p \land q$ y $q \land p$, son lógicamente equivalentes.
+    \item Dadas las proposiciones $p \lor q$ y $q \lor p$, son lógicamente equivalentes.
+    \item Dadas las proposiciones $p \land (q \lor r)$ y $(p \land q) \lor (p \land r)$, son lógicamente equivalentes.
+    \item Dadas las proposiciones $p \lor (q \land r)$ y $(p \lor q) \land (p \lor r)$, no son lógicamente equivalentes.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Equivalencia lógica -- Leyes de Morgan}
+  \begin{itemize}[<+->]
+    \item \textbf{Ley de Morgan para la conjunción:} $\neg (p \land q) \equiv \neg p \lor \neg q$.
+    \item \textbf{Ley de Morgan para la disyunción:} $\neg (p \lor q) \equiv \neg p \land \neg q$.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Equivalencia lógica -- Distributividad}
+  \begin{itemize}[<+->]
+    \item \textbf{Propiedad distributiva de la conjunción sobre la disyunción:} $p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$.
+    \item \textbf{Propiedad distributiva de la disyunción sobre la conjunción:} $p \lor (q \land r) \equiv (p \lor q) \land (p \lor r)$.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Equivalencia lógica -- Transitividad}
+  \begin{itemize}[<+->]
+    \item Si $p \iff q$ y $q \iff r$, entonces $p \iff r$.
+    \item Si $p \implies q$ y $q \implies r$, entonces $p \implies r$.
+    \item Si $p \land q$ y $q \land r$, entonces $p \land r$.
+    \item Si $p \lor q$ y $q \lor r$, entonces $p \lor r$.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Equivalencia lógica -- Simplificación}
+  \begin{itemize}[<+->]
+    \item \textbf{Propiedad de la identidad:} $p \land \top \equiv p$ y $p \lor \bot \equiv p$.
+    \item \textbf{Propiedad de la dominación:} $p \land \bot \equiv \bot$ y $p \lor \top \equiv \top$.
+    \item \textbf{Propiedad de la doble negación:} $\neg \neg p \equiv p$.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Equivalencia lógica -- Simplificación}
+  \begin{itemize}[<+->]
+    \item \textbf{Propiedad de la idempotencia:} $p \land p \equiv p$ y $p \lor p \equiv p$.
+    \item \textbf{Propiedad de la complementación:} $p \land \neg p \equiv \bot$ y $p \lor \neg p \equiv \top$.
+    \item \textbf{Propiedad de la absorción:} $p \land (p \lor q) \equiv p$ y $p \lor (p \land q) \equiv p$.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Problema real}
+  MathLike quiere un código de conducta para su \textit{server} de Discord. Quiere que se cumplan las siguientes reglas:
+
+  \begin{enumerate}[<+->]
+    \item Si un usuario hace \textit{spam} o \textit{trolea}, entonces será \textit{baneado}.
+    \item Si un usuario hace \textit{flood}, entonces será \textit{warned} y \textit{muteado}.
+    \item Si un usuario hace \textit{flood} y \textit{trolea}, entonces será \textit{muteado}.
+    \item Si un usuario hace \textit{spam} y \textit{flood}, entonces será \textit{baneado}.
+    \item Si un usuario envía \textit{NSFW}, entonces será \textit{baneado}.
+  \end{enumerate}
+
+  ¿Cómo podemos expresar estas reglas en lógica proposicional? ¿Se puede simplificar?
+\end{frame}
+\end{document}
